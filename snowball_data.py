@@ -87,7 +87,7 @@ def write_tweets(all_usernames):
 								except TypeError:
 									loc = 'no location'
 								
-								# Comment out in if you want to reduce
+								# Comment in if you want to reduce
 								# time complexity for only geo-tagged locations
 								# if loc not in valid_locations:
 								# 	print("location not in selected entries\n")
@@ -99,8 +99,8 @@ def write_tweets(all_usernames):
 								 tweet['lang'], tweet['full_text'], 
 											tweet['user']['name']]
 
-								#check if place name is available, in case not
-								#  the entry is named 'no place'
+								# check if place name is available, in case not
+								# the entry is named 'no place'
 
 								place=""
 								try:
