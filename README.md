@@ -23,3 +23,7 @@ your_data.csv -> just_coordinates.py -> your_coordinates.csv -> map_data.py -> M
 python3 (streaming_method.py or snowball_data.py, or any others depending on the stage of data anlysis) 
 
 Change the script names within python files for the data you are working on.
+
+### Extra files
+
+Along with the executable scripts, there is an additional file called DATA_FILES which gives some examples of the data scraped using this method.
