@@ -26,4 +26,4 @@ Change the script names within python files for the data you are working on.
 
 ### Extra files
 
-Along with the executable scripts, there is an additional file called DATA_FILES which gives some examples of the data scraped using this method.
+Along with the executable scripts, there is an additional folder called DATA_FILES which gives some examples of the data scraped using this method.
