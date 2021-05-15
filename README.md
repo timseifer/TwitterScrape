@@ -30,4 +30,4 @@ Along with the executable scripts, there is an additional folder called DATA_FIL
 
 ### Config.py
 
-A config file with your authorization's to use the twitter API
+A config file with your authorizations to use the twitter API
