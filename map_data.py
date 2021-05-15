@@ -17,28 +17,21 @@ import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 import contextily as ctx
 
-# used pandas to extract data from the csv file.
 
 df = pd.read_csv("lat_long.csv", delimiter=',', skiprows=0, low_memory=False)
 df['coords'] = list(zip(df['Longitude'], df['Latitude']))
 geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
 
-gdf = GeoDataFrame(df, geometry=geometry)   
+# gdf = GeoDataFrame(df, geometry=geometry)   
 
 geo_df = gpd.GeoDataFrame(
     df,
-    geometry = geometry
+    geometry = geometry,
 )
 
-# utilize epsg and stamen tiles api to set background image.
-
-geo_df.set_crs(3857, allow_override=True, inplace=True)
-ax = geo_df.to_crs(epsg=27040).plot(edgecolor="red", 
-                                       facecolor="none",  
-                                       linewidth=2,
-                                       figsize=(9, 9))
-ctx.add_basemap(ax, zoom='auto')
-ax.set_axis_off()
-
-# show the plot that was created.
+world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+base = world[(world.name == "United Arab Emirates")].plot(color='white', edgecolor='black')
+geo_df.clip(world, base)
+geo_df.plot(ax=base, marker='o', color='red', markersize=1).clip()
+# gdf.plot(color='none',edgecolor='green', ax = ax)
 plt.show()
