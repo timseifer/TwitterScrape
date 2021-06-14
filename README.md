@@ -6,7 +6,7 @@ Twitter Scrape utilizes a series of scripts to manipulate Twitter Geo-Tagged JSO
 
 There are two methods to scraping geo-tagged tweets: One involves streaming tweets with a bounding box and the other is point radius method. The scripts can be identified as streaming_method.py & geo_locator.py respectively.
 
-The streaming bounding box method can continuously run on an AWS server.
+The streaming bounding box method can continuously be run on an AWS server using nohup python3 streaming_metho.py &. This enables continuous data collection without your physical laptop being opened.
 
 The general running of data should be as follows:
 streaming_method.py -> your_data.csv -> snowball_data.py -> your_data_larger.csv
