@@ -16,22 +16,32 @@ from geopandas import GeoDataFrame
 import matplotlib.pyplot as plt
 from shapely.geometry import Polygon
 import contextily as ctx
+import folium
+# from folium.plugins import Map
+import webbrowser
+filepath = '/Users/timseifert/Desktop/Twitter Scraping/map_reg.html'
 
+mapit = folium.Map(location=[23.4241, 53.8478], zoom_start = 13) 
+df = pd.read_csv("lat_long_UAE_v2_correct.csv", delimiter=',', skiprows=0, low_memory=False)
+map_data = list(zip(df['Longitude'], df['Latitude']))
+for coord in map_data:
+    folium.Marker(location=[coord[0], coord[1]], fill_color='#43d9de', radius=1 ).add_to( mapit)
 
-df = pd.read_csv("lat_long.csv", delimiter=',', skiprows=0, low_memory=False)
-df['coords'] = list(zip(df['Longitude'], df['Latitude']))
-geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
+mapit.save(filepath)
+webbrowser.open('file://' + filepath)
 
-# gdf = GeoDataFrame(df, geometry=geometry)   
+# geometry = [Point(xy) for xy in zip(df['Longitude'], df['Latitude'])]
 
-geo_df = gpd.GeoDataFrame(
-    df,
-    geometry = geometry,
-)
+# # gdf = GeoDataFrame(df, geometry=geometry)   
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
-base = world[(world.name == "United Arab Emirates")].plot(color='white', edgecolor='black')
-geo_df.clip(world, base)
-geo_df.plot(ax=base, marker='o', color='red', markersize=1).clip()
-# gdf.plot(color='none',edgecolor='green', ax = ax)
-plt.show()
+# geo_df = gpd.GeoDataFrame(
+#     df,
+#     geometry = geometry,
+# )
+
+# world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+# base = world.plot(color='white', edgecolor='black', cmap='OrRd')
+# # geo_df.clip(world, base)
+# geo_df.plot(ax=base, marker='o', color='red', markersize=1)
+# # gdf.plot(color='none',edgecolor='green', ax = ax)
+# plt.show()
