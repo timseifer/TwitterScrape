@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 Map the data from a latitude, longitude csv file using Contextily utilizing
@@ -7,7 +6,6 @@ epsg for higher levels of data extraction.
 
 __author__ = "Tim Seifert"
 __license__ = "N/A"
-
 
 import pandas as pd
 from shapely.geometry import Point
